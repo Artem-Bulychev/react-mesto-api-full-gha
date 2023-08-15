@@ -1,0 +1,10 @@
+.login__form{
+  text-align: center;
+  border: 0;
+
+}
+@media screen and (max-width: 898px){
+  .login__form {
+   width: 260px;
+  }
+}
