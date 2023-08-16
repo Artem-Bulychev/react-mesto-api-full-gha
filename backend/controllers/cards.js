@@ -2,12 +2,6 @@ const Card = require('../models/card');
 const ErrorNotFound = require('../errors/ErrorNotFound');
 const ErrorRequest = require('../errors/ErrorRequest');
 const ErrorForbidden = require('../errors/ErrorForbidden');
-const {
-  STATUS_OK,
-  ERROR_INCORRECT_DATA,
-  ERROR_NOT_FOUND,
-  ERROR_DEFAULT,
-} = require('../utils/status');
 
 const getCards = (req, res, next) => {
   Card.find({})

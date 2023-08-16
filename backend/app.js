@@ -1,15 +1,18 @@
+require('dotenv').config();
+
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes/index');
-
+const cors = require('cors');
 const ErrorHand = require('./middlewares/ErrorHand');
 const { errors } = require('celebrate');
 
 const app = express();
 
 const { PORT = 3000 } = process.env;
+app.use(cors());
 
 // подключаемся к серверу mongo
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
@@ -19,6 +22,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
 app.use(express.json());
 
 app.use(requestLogger); // подключаем логгер запросов
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.use(routes);
 
