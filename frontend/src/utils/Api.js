@@ -124,10 +124,7 @@ class Api {
 
 const api = new Api({
   baseUrl: "https://api.domainname.tema.nomoreparties.co",
-  // headers: {
-  //   authorization: "5730adbc-cf45-48cf-ad8c-2a55448015a6",
-  //   "Content-Type": "application/json",
-  // },
+
 });
 
 

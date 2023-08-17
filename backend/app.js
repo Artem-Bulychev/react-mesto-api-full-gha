@@ -1,13 +1,15 @@
+/* eslint-disable brace-style */
+// eslint-disable-next-line import/no-extraneous-dependencies
 require('dotenv').config();
-
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const express = require('express');
 const mongoose = require('mongoose');
-const routes = require('./routes/index');
-const cors = require('cors');
-const ErrorHand = require('./middlewares/ErrorHand');
 const { errors } = require('celebrate');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const cors = require('cors');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+const routes = require('./routes/index');
+const ErrorHand = require('./middlewares/ErrorHand');
 
 const app = express();
 
@@ -37,5 +39,5 @@ app.use(errors());
 app.use(ErrorHand);
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
-})
+  // eslint-disable-next-line block-spacing
+  console.log(`App listening on port ${PORT}`);});
