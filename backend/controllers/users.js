@@ -9,7 +9,7 @@ const ErrorConflict = require('../errors/ErrorConflict');
 
 const getUsers = (req, res, next) => {
   User.find({})
-    .then((user) => res.send({ data: user }))
+    .then((user) => res.send(user))
     .catch(next);
 };
 
@@ -21,7 +21,7 @@ const getUserById = (req, res, next) => {
       if (!user) {
         throw new ErrorNotFound('Пользователь по указанному _id не найден');
       }
-      res.send({ data: user });
+      res.send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
@@ -126,7 +126,7 @@ const getCurrentUser = (req, res, next) => {
       if (!user) {
         throw new ErrorNotFound('Пользователь с указанным _id не найден');
       }
-      res.send({ data: user });
+      res.send(user);
     })
     .catch(next);
 };
