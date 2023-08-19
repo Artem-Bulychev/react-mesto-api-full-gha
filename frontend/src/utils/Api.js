@@ -103,7 +103,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.domainname.tema.nomoreparties.co ",
+  baseUrl: "https://api.domainname.tema.nomoreparties.co",
 })
 
 export default api

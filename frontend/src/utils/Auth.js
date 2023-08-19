@@ -1,5 +1,5 @@
 // Реализация аутентификации пользователя
-export const BASE_URL = "https://api.domainname.tema.nomoreparties.co ";
+export const BASE_URL = "https://api.domainname.tema.nomoreparties.co";
 
 const getRes = (res) => {
   if (res.ok) {
