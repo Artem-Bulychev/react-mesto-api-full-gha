@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP 158.160.74.37
+IP 158.160.23.168
 
 Frontend https://domainname.tema.nomoreparties.co
 
