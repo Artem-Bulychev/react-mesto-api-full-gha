@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.104.110
+IP 51.250.104.110
 
 Frontend https://domainname.tema.nomoreparties.co
 

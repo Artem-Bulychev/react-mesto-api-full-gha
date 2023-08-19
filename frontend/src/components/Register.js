@@ -32,7 +32,7 @@ return (
       <input className="login__auth" required id="email" name="email" type="email" value={formValue.email || ""} onChange={handleChange} minLength="2" maxLength="30" placeholder="email"/>
       <input className="login__auth" required id="password" name="password" type="password" value={formValue.password || ""} onChange={handleChange} minLength="2" maxLength="30" placeholder="password"/>
       </div>
-        <button type="submit" className="login__save">Войти</button>
+        <button type="submit" className="login__save">Зарегистрироваться</button>
     </form>
     <div className="login__signup">
       <p className="login__signup-text">Уже зарегистрированы?</p>
