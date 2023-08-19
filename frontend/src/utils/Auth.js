@@ -1,5 +1,5 @@
 // Реализация аутентификации пользователя
-export const BASE_URL = "https://api.domainname.tema.nomoreparties.co";
+export const BASE_URL = "http://localhost:3000";
 
 const getRes = (res) => {
   if (res.ok) {
@@ -7,7 +7,6 @@ const getRes = (res) => {
   }
   return Promise.reject(`Ошибка: ${res.status}`);
 };
-
 
 export const reg = ( email, password) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -19,8 +18,6 @@ export const reg = ( email, password) => {
     body: JSON.stringify({ email, password }),
   }).then(getRes);
 };
-
-
 
 export const auth = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
@@ -42,8 +39,6 @@ export const auth = (email, password) => {
     .catch((err) => console.log(err));
 };
 
-
-
 export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
@@ -54,3 +49,4 @@ export const checkToken = (token) => {
     },
   }).then(getRes);
 };
+

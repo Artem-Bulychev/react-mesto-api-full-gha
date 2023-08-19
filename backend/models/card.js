@@ -1,39 +1,50 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 
-const cardSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'Поле "name" должно быть заполнено'],
-    minLength: [2, 'Минимальная длина поля "name" - 2'],
-    maxLength: [30, 'Максимальная длина поля "name" - 30'],
-  },
-  link: {
-    type: String,
-    required: [true, 'Поле "link" должно быть заполнено'],
-    validate: {
-      validator: (a) => validator.isURL(a),
-      message: 'Некорректный URL',
+const { Schema } = mongoose;
+const { ObjectId } = mongoose.Schema.Types;
+
+const { urlRegex } = require('../utils/constants');
+
+const cardSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      minlength: [2, 'Минимальная длина поля "name" - 2'],
+      maxlength: [30, 'Максимальная длина поля "name" - 30'],
     },
-  },
-  owner: {
-    type: mongoose.ObjectId,
-    ref: 'user',
-    required: [true, 'Поле "owner" должно быть заполнено'],
-  },
-  likes: {
-    type: [
+
+    link: {
+      type: String,
+      required: true,
+      validate: {
+        validator: (url) => urlRegex.test(url),
+        message: 'Требуется ввести URL',
+      },
+    },
+
+    owner: {
+      type: ObjectId,
+      ref: 'user',
+      required: true,
+    },
+
+    likes: [
       {
-        type: [mongoose.ObjectId],
+        type: ObjectId,
         ref: 'user',
+        default: [],
       },
     ],
-    default: [],
+
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
+  {
+    versionKey: false,
   },
-}, { versionKey: false });
+);
 
 module.exports = mongoose.model('card', cardSchema);

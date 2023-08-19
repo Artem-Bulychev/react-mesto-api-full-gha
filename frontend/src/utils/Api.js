@@ -3,13 +3,12 @@ class Api {
     this._url = options.baseUrl
   }
 
-  getInitialCards() {
-    const token = localStorage.getItem("token");
+  getCards() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
       headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => this._checkRequest(res))
   }
@@ -21,28 +20,22 @@ class Api {
     return Promise.reject(`Ошибка: ${res.status}`)
   }
 
-  _req(url, options) {
-    return fetch(url, options).then(this._checkRequest)
-  }
-
   getInfo() {
-    const token = localStorage.getItem("token");
-    return  this._req(`${this._url}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    })
+    }).then((res) => this._checkRequest(res))
   }
 
   editInfo({ name, about }) {
-    const token = localStorage.getItem("token");
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         name: name,
@@ -52,12 +45,11 @@ class Api {
   }
 
   userAvatar({ avatar }) {
-    const token = localStorage.getItem("token");
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         avatar: avatar,
@@ -66,12 +58,11 @@ class Api {
   }
 
   newCard(data) {
-    const token = localStorage.getItem("token");
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({
         name: data.name,
@@ -81,52 +72,38 @@ class Api {
   }
 
   deleteCard(cardId) {
-    const token = localStorage.getItem("token");
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
+    return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => this._checkRequest(res))
   }
 
-  modLike(cardId, isLiked){
-    if(!isLiked){
-      return this.putLike(cardId)
-    } else{
-      return this.deleteLike(cardId)
-    }
-  } 
-
   putLike(cardId) {
-    const token = localStorage.getItem("token");
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => this._checkRequest(res))
   }
 
   deleteLike(cardId) {
-    const token = localStorage.getItem("token");
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: {
-        "content-type": "application/json",
-        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => this._checkRequest(res))
   }
 }
 
 const api = new Api({
-  baseUrl: "https://api.domainname.tema.nomoreparties.co",
-
-});
-
-
+  baseUrl: "http://localhost:3000",
+})
 
 export default api
