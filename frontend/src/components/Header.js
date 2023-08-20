@@ -26,7 +26,7 @@ export default function Header({userData, signOut}) {
           path="/cards"
           element={
             <div className="header__nav">
-              <p className="header__email">{userData}</p>
+              <p className="header__mail">{userData}</p>
               <Link to="/signin" className="header__link" onClick={signOut}>
                 Выйти
               </Link>
