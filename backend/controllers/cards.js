@@ -54,7 +54,15 @@ function deleteCardById(req, res, next) {
 
       res.send({ data: deletedCard });
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'CastError') {
+        next(
+          new ErorrRequest('При удалении передан не валидный id'),
+        );
+      } else {
+        next(err);
+      }
+    });
 }
 
 function putCardLike(req, res, next) {
