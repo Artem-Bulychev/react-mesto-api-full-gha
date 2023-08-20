@@ -1,9 +1,6 @@
 const allowedCors = [
   'https://domainname.tema.nomoreparties.co',
   'http://domainname.tema.nomoreparties.co',
-  'https://localhost:3000',
-  'http://localhost:3000',
-  'https://localhost:3001',
   'http://localhost:3001',
 ];
 

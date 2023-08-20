@@ -26,8 +26,7 @@ const { PORT = 3000 } = process.env;
 
 mongoose.set('strictQuery', true);
 
-mongoose
-  .connect(URL)
+mongoose.connect(URL)
   .then(() => {
     console.log('БД успешно подключена');
   })

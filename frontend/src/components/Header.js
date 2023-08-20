@@ -3,7 +3,7 @@ import logoType from "../images/logo.svg";
 import { Link, Route, Routes } from "react-router-dom";
 
 
-export default function Header({userData, signOut}) {
+export default function Header({email, signOut}) {
   return (
     <header className="header">
       <img className="header__logo" src={logoType}  alt="Логотип места"/>
@@ -26,7 +26,7 @@ export default function Header({userData, signOut}) {
           path="/cards"
           element={
             <div className="header__nav">
-              <p className="header__mail">{userData}</p>
+              <p className="header__mail">{ email }</p>
               <Link to="/signin" className="header__link" onClick={signOut}>
                 Выйти
               </Link>

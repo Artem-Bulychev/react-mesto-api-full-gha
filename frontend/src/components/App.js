@@ -34,9 +34,9 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false)
 
   const [loggedIn, setLoggedIn] = React.useState(false)
-  const [email, setEmail] = React.useState("")
+  const [email, setEmail] = React.useState(null)
 
-  const [userData, setUserData] = React.useState(null)
+  // const [userData, setUserData] = React.useState(null)
   const [statusInfoTooltip, setStatusInfoTooltip] = React.useState(false)
   const [isInfoTooltipPopupOpen, setInfoTooltipPopupOpen] =
     React.useState(false)
@@ -162,7 +162,7 @@ function App() {
 
   function tokenCheck() {
     const token = localStorage.getItem("token")
-    console.log(token)
+    // console.log(token)
     if (token) {
       auth
         .checkToken(token)
@@ -170,6 +170,7 @@ function App() {
           if (!res) {
             return
           }
+          // console.log(res);
           setEmail(res.email)
           setLoggedIn(true)
           navigate("/")
@@ -191,7 +192,7 @@ function App() {
       .then((data) => {
         /* console.log(data)*/
         if (data.token) {
-          setUserData(email)
+          setEmail(email)
           setLoggedIn(true)
           navigate("/cards", { replace: true })
         }
@@ -222,7 +223,7 @@ function App() {
 
   function signOut() {
     localStorage.removeItem("token")
-    setUserData("")
+    setEmail(null)
     setLoggedIn(false)
     navigate("/signin", { replace: true })
   }
@@ -231,7 +232,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
         <div className="page">
-          <Header userData={userData} signOut={signOut} />
+          <Header email={email} signOut={signOut} />
           <main>
             <Routes>
               <Route
